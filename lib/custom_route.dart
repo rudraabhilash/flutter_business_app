@@ -6,7 +6,7 @@ class FadePageRoute<T> extends MaterialPageRoute<T> {
   FadePageRoute({
     required super.builder,
     super.settings,
-  });
+  }); 
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 600);

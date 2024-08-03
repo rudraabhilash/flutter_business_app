@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+ 
 class AnimatedNumericText extends StatelessWidget {
   AnimatedNumericText({
     super.key,

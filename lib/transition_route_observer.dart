@@ -6,7 +6,7 @@ class TransitionRouteObserver<R extends TransitionRoute<dynamic>?>
     extends NavigatorObserver {
   final Map<R, Set<TransitionRouteAware>> _listeners =
       <R, Set<TransitionRouteAware>>{};
-
+ 
   /// Subscribe [routeAware] to be informed about changes to [route].
   ///
   /// Going forward, [routeAware] will be informed about qualifying changes

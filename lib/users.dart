@@ -3,4 +3,4 @@ const mockUsers = {
   'devotee@gmail.com': 'hunter',
   'rudraabhilash@gmail.com': 'pas',
   '@.com': '.',
-};
+}; 

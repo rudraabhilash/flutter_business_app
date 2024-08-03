@@ -67,7 +67,7 @@ class _DashboardScreenState extends State<DashboardScreen>
 
   @override
   void didPushAfterTransition() => _loadingController!.forward();
-
+ 
   AppBar _buildAppBar(ThemeData theme) {
     final menuBtn = IconButton(
       color: theme.colorScheme.secondary,
