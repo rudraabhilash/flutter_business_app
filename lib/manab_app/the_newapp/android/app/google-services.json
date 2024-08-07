@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "254803010706",
+    "project_id": "mega-mart-13ac5",
+    "storage_bucket": "mega-mart-13ac5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254803010706:android:816675471a9165a2ac324b",
+        "android_client_info": {
+          "package_name": "com.example.the_newapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiOoNqSkyqYRSQPGykJCuUNkyLd9R2zL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
