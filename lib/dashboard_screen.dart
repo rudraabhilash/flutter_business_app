@@ -8,6 +8,7 @@ import 'widgets/animated_numeric_text.dart';
 import 'widgets/fade_in.dart';
 import 'widgets/round_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const routeName = '/dashboard';
@@ -20,10 +21,22 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen>
     with SingleTickerProviderStateMixin, TransitionRouteAware {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<void> _signOut() async {
+    try {
+      await _auth.signOut();
+      Navigator.of(context).pushReplacementNamed('/auth');
+    } catch (e) {
+      // Handle error, e.g., show an error message
+      print('Sign out error: $e');
+    }
+  }
+
   Future<bool> _goToLogin(BuildContext context) {
     return Navigator.of(context)
         .pushReplacementNamed('/auth')
-        // we dont want to pop the screen, just replace it completely
+        // we don't want to pop the screen, just replace it completely
         .then((_) => false);
   }
 
@@ -67,7 +80,7 @@ class _DashboardScreenState extends State<DashboardScreen>
 
   @override
   void didPushAfterTransition() => _loadingController!.forward();
- 
+
   AppBar _buildAppBar(ThemeData theme) {
     final menuBtn = IconButton(
       color: theme.colorScheme.secondary,
@@ -77,7 +90,7 @@ class _DashboardScreenState extends State<DashboardScreen>
     final signOutBtn = IconButton(
       icon: const Icon(FontAwesomeIcons.rightFromBracket),
       color: theme.colorScheme.secondary,
-      onPressed: () => _goToLogin(context),
+      onPressed: _signOut,
     );
     final title = Center(
       child: Row(
@@ -124,9 +137,6 @@ class _DashboardScreenState extends State<DashboardScreen>
       title: title,
       backgroundColor: theme.primaryColor.withOpacity(.1),
       elevation: 0,
-      // toolbarTextStyle: TextStle(),
-      // textTheme: theme.accentTextTheme,
-      // iconTheme: theme.accentIconTheme,
     );
   }
 
@@ -209,7 +219,6 @@ class _DashboardScreenState extends State<DashboardScreen>
         vertical: 20,
       ),
       childAspectRatio: .9,
-      // crossAxisSpacing: 5,
       crossAxisCount: 3,
       children: [
         _buildButton(
@@ -219,7 +228,6 @@ class _DashboardScreenState extends State<DashboardScreen>
         ),
         _buildButton(
           icon: Container(
-            // fix icon is not centered like others for some reasons
             padding: const EdgeInsets.only(left: 16.0),
             alignment: Alignment.centerLeft,
             child: const Icon(
@@ -315,18 +323,13 @@ class _DashboardScreenState extends State<DashboardScreen>
                     Expanded(
                       flex: 8,
                       child: ShaderMask(
-                        // blendMode: BlendMode.srcOver,
                         shaderCallback: (Rect bounds) {
                           return LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: <Color>[
-                              Colors.deepPurpleAccent.shade100,
-                              Colors.deepPurple.shade100,
-                              Colors.deepPurple.shade100,
-                              Colors.deepPurple.shade100,
-                              // Colors.red,
-                              // Colors.yellow,
+                              theme.primaryColor.withOpacity(0.2),
+                              theme.primaryColor.withOpacity(0.1),
                             ],
                           ).createShader(bounds);
                         },
@@ -335,7 +338,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                     ),
                   ],
                 ),
-                if (!kReleaseMode) _buildDebugButtons(),
+                _buildDebugButtons(),
               ],
             ),
           ),
