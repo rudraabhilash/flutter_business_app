@@ -27,3 +27,6 @@ To install packages- flutter pub add font_awesome_flutter
 
 ![image](https://github.com/user-attachments/assets/90946fb3-6ac1-40eb-9fd2-dcf4a2eee6d5)
 
+
+
+https://firebase.google.com/docs/flutter/setup?platform=android    *link of firebase documentation*
