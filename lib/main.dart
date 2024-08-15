@@ -1,25 +1,42 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dashboard_screen.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
 
-void main() {
+Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       systemNavigationBarColor:
           SystemUiOverlayStyle.dark.systemNavigationBarColor,
     ),
   );
+  WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: "AIzaSyCvx6Ggtu2O8E3AXBUoPmGehD4oWSCLBE4",
+        appId: "1:409408335257:web:4e144fd5ea2c84cddab708",
+        messagingSenderId: "409408335257",
+        projectId: "flutter-business-app-56712",
+      ),
+    );
+  } else {
+    // Add initialization for mobile platforms if f
+    await Firebase.initializeApp();
+  }
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Login Demo',
       theme: ThemeData(
         textSelectionTheme:
